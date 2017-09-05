@@ -5,14 +5,22 @@ var MapWrapper = function(container, coords, zoom){
   zoom: zoom
   });
   this.markers = [];
+
+
 }
 
-MapWrapper.prototype.addMarker = function(coords){
+MapWrapper.prototype.addMarkerWithInfo = function(coords){
   var marker = new google.maps.Marker({
     position: coords,
-    map: this.googleMap
+    map: this.googleMap,
+    title: 'London'
+  }); 
+  var infoWindow = new google.maps.InfoWindow({
+    content: 'Centre of London'
   });
-  this.markers.push(marker);
+  marker.addListener('click', function(){
+    infoWindow.open(this.googleMap, marker);
+  });
 }
 
 MapWrapper.prototype.addClickEvent = function(){
@@ -25,4 +33,5 @@ MapWrapper.prototype.bounceMarkers = function() {
   this.markers.forEach(function(marker){
     marker.setAnimation(google.maps.Animation.BOUNCE)
   })
+
 }
