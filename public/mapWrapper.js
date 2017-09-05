@@ -35,3 +35,8 @@ MapWrapper.prototype.bounceMarkers = function() {
   })
 
 }
+
+MapWrapper.prototype.toChicago = function(coordinated){
+  this.googleMap.setCenter({lat: 41.878114 , lng: -87.629798});
+}
+
